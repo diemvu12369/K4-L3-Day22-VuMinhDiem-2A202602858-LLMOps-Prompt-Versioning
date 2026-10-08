@@ -1,0 +1,26 @@
+📐 RAGAS: 63/100 sample đã có điểm, còn 37 sample cần chấm ...
+  Lô 1/4 (10 sample, giám khảo: gemini-3.1-flash-lite)
+   🔁 'gemini-3.1-flash-lite' hết quota ngày → chuyển sang 'gemini-3.1-flash-lite-preview'
+   🔁 'gemini-3.1-flash-lite-preview' hết quota ngày → chuyển sang 'gemma-4-26b-a4b-it'
+  Lô 2/4 (10 sample, giám khảo: gemma-4-26b-a4b-it)
+  Lô 3/4 (10 sample, giám khảo: gemma-4-26b-a4b-it)
+  Lô 4/4 (7 sample, giám khảo: gemma-4-26b-a4b-it)
+📊 Kết quả RAGAS — Prompt V1:
+  faithfulness                  : 0.9884  (n=43) ⭐
+  answer_relevancy              : 0.8502  (n=50)
+  context_recall                : 1.0000  (n=50)
+  context_precision             : 0.9650  (n=50)
+📊 Kết quả RAGAS — Prompt V2:
+  faithfulness                  : 0.9786  (n=33) ⭐
+  answer_relevancy              : 0.8493  (n=50)
+  context_recall                : 1.0000  (n=50)
+  context_precision             : 0.9650  (n=50)
+=================================================================
+  Metric                                V1        V2  Winner
+=================================================================
+  faithfulness                      0.9884    0.9786  ← V1
+  answer_relevancy                  0.8502    0.8493  ← V1
+  context_recall                    1.0000    1.0000  = Tie
+  context_precision                 0.9650    0.9650  = Tie
+✅ Đạt mục tiêu: faithfulness = 0.9884 ≥ 0.8
+💾 Đã lưu báo cáo vào C:\Users\Acer\Documents\GitHub\K4-L3-Day22-VuMinhDiem-2A202602858-LLMOps-Prompt-Versioning\data\ragas_report.json

@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-10-08T20:43:59",
+  "provider": "gemini",
+  "generator_model": "gemini-3.1-flash-lite",
+  "judge_models_used": [
+    "gemini-3-flash-preview",
+    "gemini-3.1-flash-lite",
+    "gemma-4-26b-a4b-it"
+  ],
+  "num_samples": 50,
+  "prompt_v1_scores": {
+    "faithfulness": 0.9883720930232558,
+    "answer_relevancy": 0.8502162794344611,
+    "context_recall": 1.0,
+    "context_precision": 0.9649999999240834
+  },
+  "prompt_v2_scores": {
+    "faithfulness": 0.978581267217631,
+    "answer_relevancy": 0.849299544955437,
+    "context_recall": 1.0,
+    "context_precision": 0.9649999999240834
+  },
+  "n_scored": {
+    "v1": {
+      "faithfulness": 43,
+      "answer_relevancy": 50,
+      "context_recall": 50,
+      "context_precision": 50
+    },
+    "v2": {
+      "faithfulness": 33,
+      "answer_relevancy": 50,
+      "context_recall": 50,
+      "context_precision": 50
+    }
+  },
+  "target_met": true
+}

@@ -61,9 +61,25 @@ def build_vectorstore(chunks: list, embeddings):
     Returns:
         FAISS vectorstore đã được index và sẵn sàng dùng để retrieve
     """
+    import hashlib
     from langchain_community.vectorstores import FAISS
+
+    # Cache index xuống đĩa, khoá theo (embedding model + nội dung chunks) → các bước
+    # sau không phải embed lại toàn bộ KB (tiết kiệm quota/chi phí embeddings).
+    model_name = str(getattr(embeddings, "model", type(embeddings).__name__))
+    key = hashlib.md5((model_name + "\x00" + "\x00".join(chunks)).encode("utf-8")).hexdigest()[:16]
+    cache_dir = Path(__file__).parent.parent.parent / "data" / "faiss_cache" / key
+
+    if (cache_dir / "index.faiss").exists():
+        try:
+            vectorstore = FAISS.load_local(str(cache_dir), embeddings, allow_dangerous_deserialization=True)
+            print(f"✅ FAISS vectorstore đã sẵn sàng (load cache {key}, {len(chunks)} chunks).")
+            return vectorstore
+        except Exception as e:  # cache hỏng → build lại
+            print(f"⚠️  Không load được cache FAISS ({e}), build lại ...")
 
     print(f"🔨 Đang tạo FAISS index từ {len(chunks)} chunks ...")
     vectorstore = FAISS.from_texts(chunks, embeddings)
+    vectorstore.save_local(str(cache_dir))
     print("✅ FAISS vectorstore đã sẵn sàng.")
     return vectorstore
